@@ -1,0 +1,137 @@
+Environnement
+=============
+
+Récupérer le sujet sous le repertoire : /home/TP/modules/sujets/CAI/Qt5/Qt5_python
+
+dans un repertoire de travail de binômes (Dupond et Dupont) :
+
+cp -r /home/TP/modules/sujets/CAI/Qt5/Qt5_python $HOME/.../Dupond_Dupont_PyQt5
+
+Objectifs du TP
+===============
+
+Création d'un éditeur graphique avec les fonctionnalites de base pour realiser
+de maniere la plus interactive possible un dessin avec des items sélectionnables et déplaçables.
+
+A la fin des séances de labos, l'utilisateur de votre IHM doit pouvoir tracer, sauvegarder, charger un dessin
+à base d'objets graphiques (lignes,ellipses, rectangles, polygones et textes) déplaçables dont on pourra selectionner 
+interactivement, dans les menus proposés, les caractéristiques de contours et le mode de remplissage.
+
+On devra pouvoir également sélectionner un groupe d'objets graphiques à déplacer/détruire.
+On pourra mettre en oeuvre le mode défaire/refaire pour détruire/recréer les objets graphiques créés.
+
+Toutes les actions possibles sur l'IHM doivent être récensées dans la barre de menu.
+Les actions les plus fréquentes seront représentées dans la barre d'outils.
+
+L'utilisateur de l'IHM doit pouvoir sélectionner les actions possibles sur la zone cliente à l'aide d'un menu surgissant.
+
+Toute action irréversible devra avertir l'utilisateur avec des boîtes de dialogues.
+
+Un menu d'aide doit être proposé pour faire apparaître des boîtes de dialogues pour avoir des informations sur :
+   - les concepteurs de l'application
+   - les remerciements sur l'API Qt
+   - un message d'information sur l'utilisation de l'application (README)
+
+IHM Editeur graphique 
+=====================
+
+Doit contenir les actions dans :
+  - une  barre d'actions (toutes les actions possibles)
+  - une barre d'outils (actions les plus courantes)
+  - une zone cliente avec menu surgissant (actions sur la zone cliente)
+
+Selection d'actions (mainwindow.py)
+===================================
+
+Dans la barre d'actions
+.......................
+
+File : New (Warning dialog)
+       ------------
+       Open        (File selection dialog)
+       Save        (File selection dialog)
+       Save As     (File selection dialog)
+       -----------
+       Exit (Warning  dialog)
+
+Tools : Line
+        Rectangle
+        Ellipse
+        Polygon
+        ----------
+        text 
+Style : Pen (submenu)
+          color  (Color selection dialog)
+          line   (submenu) (QPen : mode solidLine, DotLine, DotDashLine ...
+          width  (submenu or dialog)
+        Brush (submenu)
+          color  (Color selection  dialog)
+          fill (submenu) (QBrush  : mode solidPattern VerticalPattern ...)
+       Font (Font selection dialog)
+ 
+Help : About Us (Information dialog : Noms et Prenoms)
+       About Qt (Information dialog sur Qt/PyQt)
+       About the Application  (Information dialog : README)
+
+
+Dans la barre d'outils
+......................
+
+Open, Save, Exit, Ligne, Polygon ....
+
+Dans le menu surgissant 
+.......................
+
+Tools (cf Tools de la barre d'actions)
+Style (cf Style de la barre d'actions)
+-----
+Erase (Warning dialog)
+
+
+Interaction (scene.py)
+======================
+
+Trace elastique (Mouse move event) : sans remplissage 
+
+Trace final  : (Mouse Release Event) : item graphique avec les styles selectionnes
+
+Selection et deplacement  : 
+  - d'un item graphique
+  - d'un groupe d'items graphiques
+
+Faire/défaire la création d'items graphiques
+
+README.txt
+==========
+Documentation sur :
+   - l'installation
+   - l'utilisation de l'IHM
+       - aide sur le tracé de dessin (polygone par exemple)
+   - problemes eventuels rencontres.
+
+Ce README apparaitra aussi dans le menu d'aide (Affichage MessageBox)
+
+CONSIGNES
+=========
+
+En fin de chaque séance (17:30 au plus tard), creer une archive de version : 
+
+  - tar zcvf Dupond_Dupont_Qt5.tgz Dupond_Dupont_Qt5/
+
+Copier l'archive dans le repertoire de rendu de TP :
+
+  - cp Dupond_Dupont_Qt5.tgz /home/TP/TPrendu/nedelec/CAI/PyQt5/.
+
+L'archive ne contiendra que le CODE SOURCE (*.py) et les donnees necessaires au projet :
+ 
+  - Icons/*.png 
+  - Data/*.json 
+  - ....
+
+En cas de travail en distanciel, le dépot d'archive se fera par sftp :
+
+{logname@hostname} sftp -oPort=55555 mon_login@sftp.enib.fr (...@sftp-w.enib.fr en WIFI) 
+sftp > put Dupond_Dupont_Qt5.tgz
+sftp > exit
+
+
